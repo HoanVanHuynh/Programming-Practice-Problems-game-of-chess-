@@ -1,0 +1,35 @@
+import random
+
+def initial_board(size):
+    return [[0 for j in range(size)] for i in range(size)]
+
+
+def two_queens(board, size):
+    row1 = random.randint(0, size-1)
+    column1 = random.randint(0, size-1)
+
+    board[row1][column1] = 1
+    while True:
+
+        row2 = random.randint(0, size-1)
+        column2 = random.randint(0, size-1)
+        if row1 == row2 and column1 == column2:
+            continue
+        else:
+            board[row2][column2] = 1
+            break
+    print(board)
+
+    if row1 == row2:
+        print("Threat on the same row")
+    elif column1 == column2:
+         print("Threat on the same column")
+    elif (row2 - row1 == column2 - column1) or (row1 - row2 == column2 - column1):
+        print("Threat on an diagonal")
+    else: print("No threat detected")
+
+    return row1, column1, row2, column2, board
+
+
+board = initial_board(3)
+print(two_queens(board,3))
