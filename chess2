@@ -1,0 +1,29 @@
+
+import random
+
+def queen_locations(size):
+    board = [[0 for j in range(size)] for i in range(size)]
+    print(board)
+    locations = []
+    for i in range(0,2):
+        row = random.randint(0,size-1)
+        column = random.randint(0, size-1)
+        print(row, column)
+        locations.append([row,column])
+        if board[row][column] != 1:        
+            board[row][column] = 1 
+    return locations
+
+locations = queen_locations(3)
+
+def check_attack(locations):
+    if locations[0][0] == locations[1][0]:
+        print("Threat on the same row")
+    elif locations[0][1] == locations[1][1]:
+        print("Threat on the same column")
+    elif (abs(locations[0][0] - locations[1][0]) - abs(locations[0][1] - locations[1][1])) == 0:
+        print("Threat on an diagonal")
+    else:
+        print("No threat detected")
+
+print(check_attack(locations))
